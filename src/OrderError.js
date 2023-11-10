@@ -22,26 +22,39 @@ export class OrderError {
   }
 
   menusValidate(orders) {
-    let totalCount = 0;
     for (let i = 0; i < orders.length; i++) {
       const eachOrder = orders[i];
       this.#menuValidate(eachOrder[0]);
-      totalCount += this.#numberValidate(eachOrder[1]);
-      
     }
     this.#menuDuplicateValidate(orders);
-    this.#totalCountValidate(totalCount);
+    this.#totalCountValidate(orders);
+    this.#beverageValidate(orders);
+  }
+
+  #totalCountValidate(orders) {
+    let totalCounts = 0;
+    for (let i = 0; i < orders.length; i++) {
+      const eachOrder = orders[i];
+      totalCounts += this.#numberValidate(eachOrder[1]);
+    }
+    this.#totalCountOverValidate(totalCounts);
+  }
+
+  #beverageValidate(orders) {
+    let beverageCounts = 0;
+    for (let i = 0; i < orders.length; i++) {
+      const eachOrder = orders[i];
+      beverageCounts += this.#onlyBeverageCounter(eachOrder[0]);
+    }
+    this.#onlyBeverageValidate(beverageCounts);
   }
 
   #menuValidate(order) {
-    let finalvelidate = 0;
+    let existmenu = 0;
     for (const category in menu) {
-      const valdateNumber = this.#eachMenuValidate(menu[category], order);
-      finalvelidate += valdateNumber;
+      existmenu += this.#eachMenuValidate(menu[category], order);
     }
-    if (finalvelidate === 0) {
-      throw new Error("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.");
-    }
+    this.#noExistMenu(existmenu);
   }
 
   #eachMenuValidate(category, order) {
@@ -61,9 +74,30 @@ export class OrderError {
     }
   }
 
-  #totalCountValidate(number) {
-    if (number > 20) {
+  #totalCountOverValidate(counts) {
+    if (counts > 20) {
       throw new Error("[ERROR] 메뉴는 한 번에 최대 20개까지만 주문할 수 있습니다.");
+    }
+  }
+
+  #onlyBeverageCounter(order) {
+    for (const eachMenu in menu.beverage) {
+      if (eachMenu === order) {
+        return 0;
+      }
+    }
+    return 1;
+  }
+
+  #noExistMenu(number) {
+    if (number === 0) {
+      throw new Error("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.");
+    }
+  }
+
+  #onlyBeverageValidate(number) {
+    if (number === 0) {
+      throw new Error("[ERROR] 음료만 주문 시, 주문할 수 없습니다. 다시 입력해 주세요.");
     }
   }
 }

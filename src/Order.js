@@ -5,6 +5,7 @@ import { OrderError } from "./OrderError.js";
 export class Order {
   constructor(orders) {
     this.orders = orders;
+    //1차 점검
     this.error = new OrderError(orders);
     this.#splitAsCommas(orders);
   }
@@ -18,6 +19,7 @@ export class Order {
       totalOrder.push(order);
     }
 
+    // 2차 점검
     this.error.menusValidate(totalOrder);
     this.#totalPrice(totalOrder);
   }
