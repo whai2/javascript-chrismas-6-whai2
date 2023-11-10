@@ -1,9 +1,11 @@
 import { MissionUtils } from "@woowacourse/mission-utils";
 import { menu } from "./Menu.js";
+import { OrderError } from "./OrderError.js";
 
 export class Order {
   constructor(orders) {
     this.orders = orders;
+    this.error = new OrderError(orders);
     this.#splitAsCommas(orders);
   }
 
@@ -21,7 +23,7 @@ export class Order {
 
   #splitAsDash(order) {
     const split = order.split('-');
-    const counts = this.#countValidater(split[1])
+    const counts = this.error.numberValidate(split[1])
 
     MissionUtils.Console.print(`${split[0]} ${counts}개`);
 
@@ -57,13 +59,6 @@ export class Order {
       }
     }
     return 0;
-  }
-
-  #countValidater(number) {
-    if (/^[+]?[1-9]\d*$/.test(number)) {
-      return Number(number);
-    } 
-    throw new Error(errorComments.bonus[0]);
   }
 
   #formatCurrency(number) {
