@@ -1,4 +1,5 @@
 import { Order } from "../src/Order.js";
+import { OrderError } from "../src/OrderError.js";
 import { MissionUtils } from "@woowacourse/mission-utils";
 
 const getLogSpy = () => {
@@ -67,7 +68,7 @@ describe("주문 예외 테스트", () => {
   ])("위와 같은 상황에서, 에러가 발생한다.", (inputs,errorMessage) => {
 
     expect(()=> {
-      new Order(inputs)
+      new OrderError(inputs)
     }).toThrow(errorMessage);
   });
 
@@ -91,7 +92,7 @@ describe("주문 예외 테스트", () => {
   ])("주문한 개수가 숫자가 아닐 경우, 에러가 발생한다.", (inputs,errorMessage) => {
 
     expect(()=> {
-      new Order(inputs)
+      new OrderError(inputs)
     }).toThrow(errorMessage);
   });
 });
