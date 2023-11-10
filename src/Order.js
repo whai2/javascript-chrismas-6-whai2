@@ -12,14 +12,13 @@ export class Order {
   #splitAsCommas(orders) {
     const split = orders.split(',');
     
-    let totalprice = 0;
+    const totalOrder = [];
     for (let i = 0; i < split.length; i++) {
-      const totalPrice = this.#splitAsDash(split[i]);
-      totalprice += totalPrice;
+      const order = this.#splitAsDash(split[i]);
+      totalOrder.push(order);
     }
 
-    const formatPrice = this.#formatCurrency(totalprice);
-    MissionUtils.Console.print(`${formatPrice}원`);
+    this.#totalPrice(totalOrder);
   }
 
   #splitAsDash(order) {
@@ -28,24 +27,34 @@ export class Order {
 
     MissionUtils.Console.print(`${split[0]} ${counts}개`);
 
-    const totalPrice = this.#totalPrize(split[0], counts);
-    return totalPrice;
+    return split;
   }
 
-  #totalPrize(name, counts) {
+  #totalPrice(totalOrder) {
     let totalprice = 0;
+    for (let i = 0; i < totalOrder.length; i++) {
+      const eachOrder = totalOrder[i];
+      const orderPrice = this.#orderPrice(eachOrder[0], eachOrder[1]);
+      totalprice += orderPrice;
+    }
+
+    const formatPrice = this.#formatCurrency(totalprice);
+    MissionUtils.Console.print(`${formatPrice}원`);
+  }
+
+  #orderPrice(name, counts) {
+    let orderprice = 0;
     for (const category in menu) {
       const eachPrice = this.#eachPrice(menu[category], name, counts)
-      totalprice += eachPrice;
+      orderprice += eachPrice;
     }
-    return totalprice;
+    return orderprice;
   }
 
   #eachPrice(category, name, counts) {
     for (const eachMenu in category) {
       if (eachMenu === name) {
         const price = category[eachMenu];
-        console.log(price * counts)
         return Number(price * counts);
       }
     }
