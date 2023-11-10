@@ -2,8 +2,6 @@ import { MissionUtils } from "@woowacourse/mission-utils";
 import { menu } from "./Menu.js";
 
 export class Order {
-  #order //-를 포함하는 문자열
-
   constructor(orders) {
     this.orders = orders;
     this.#splitAsCommas(orders);
