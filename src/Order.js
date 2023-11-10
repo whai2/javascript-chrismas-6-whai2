@@ -24,7 +24,7 @@ export class Order {
 
   #splitAsDash(order) {
     const split = order.split('-');
-    const counts = this.error.numberValidate(split[1])
+    const counts = Number(split[1])
 
     MissionUtils.Console.print(`${split[0]} ${counts}개`);
 
