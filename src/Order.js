@@ -18,6 +18,7 @@ export class Order {
       totalOrder.push(order);
     }
 
+    this.error.menusValidate(totalOrder);
     this.#totalPrice(totalOrder);
   }
 
