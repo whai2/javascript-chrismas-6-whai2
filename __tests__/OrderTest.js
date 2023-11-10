@@ -8,14 +8,21 @@ const getLogSpy = () => {
 };
 
 describe("주문 클래스 테스트", () => {
-  test("- 기준으로 주문 메뉴와 개수를 알아낸다.", () => {
+  test("주문 메뉴와 개수 모두 보여준다.", () => {
     const logSpy = getLogSpy();
 
     const input = "티본스테이크-1,바비큐립-1,초코케이크-2,제로콜라-1";
     const order = new Order(input);
 
-    const log = "티본스테이크 1개";
+    const logs = [
+      "티본스테이크 1개",
+      "바비큐립 1개",
+      "초코케이크 2개",
+      "제로콜라 1개",
+    ];
 
-    expect(logSpy).toHaveBeenCalledWith(expect.stringContaining(log))
+    logs.forEach((log) => {
+      expect(logSpy).toHaveBeenCalledWith(expect.stringContaining(log));
+    });
   });
 });
