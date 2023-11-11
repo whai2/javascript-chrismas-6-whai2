@@ -4,19 +4,30 @@ import { EventError } from "./EventError.js";
 
 export class Event {
   constructor(date) {
-    new EventError(date);
+    if (model.totalprice >= 10000) {
+      new EventError(date);
+      this.#initialize();
+      this.#eventPlaner(date);
+
+      this.#discounttotalPrint();
+      return true;
+    }
+    MissionUtils.Console.print("없음");
+  }
+
+  #initialize() {
     model.discountprice = 0;
     model.giftprice = 0;
     model.eventDiscountList = [0,0,0,0]; // 디데이, 평일, 주말, 특별
+  }
 
+  #eventPlaner(date) {
     this.date = Number(date);
     if (this.date > 25) {
       this.#afterChrismas();
       return true;
     }
     this.#beforeChrismas();
-
-    this.#discounttotalPrint();
   }
 
   #discounttotalPrint() {
