@@ -5,6 +5,7 @@ export class Event {
   constructor(date) {
     // 초기화
     model.discountprice = 0;
+    model.giftprice = 0;
     model.eventDiscountList = [0,0,0,0]; // 디데이, 평일, 주말, 특별
 
     this.date = Number(date);
@@ -21,6 +22,14 @@ export class Event {
     let eventList = ["크리스마스 디데이 할인", "평일 할인", "주말 할인", "특별 할인"];
     for (let i = 0; i < eventList.length; i++) {
     this.#discountPrint(eventList[i], model.eventDiscountList[i])
+    }
+    this.#giftEventPrint();
+  }
+
+  #giftEventPrint() {
+    if (model.totalprice >= 120000) {
+      model.giftprice = 25000;
+      MissionUtils.Console.print("증정 이벤트: -25,000원");
     }
   }
 
