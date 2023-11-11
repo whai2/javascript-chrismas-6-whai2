@@ -1,5 +1,4 @@
 import { Order } from "../src/Order.js";
-import { OrderError } from "../src/OrderError.js";
 import { MissionUtils } from "@woowacourse/mission-utils";
 
 const getLogSpy = () => {

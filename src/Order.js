@@ -1,12 +1,15 @@
 import { MissionUtils } from "@woowacourse/mission-utils";
 import { menu } from "./Menu.js";
 import { OrderError } from "./OrderError.js";
+import { Counter } from "./Counter.js";
+import { model } from "./Model.js";
 
 export class Order {
   constructor(orders) {
     this.orders = orders;
     //1차 점검
     this.error = new OrderError(orders);
+    this.counter = new Counter();
     this.#splitAsCommas(orders);
   }
 
@@ -21,7 +24,9 @@ export class Order {
 
     // 2차 점검
     this.error.menusValidate(totalOrder);
-    this.#totalPrice(totalOrder);
+    this.counter.totalMenuCounter(totalOrder);
+    this.#totalPricePrint();
+    //this.#totalPrice(totalOrder);
   }
 
   #splitAsDash(order) {
@@ -33,42 +38,16 @@ export class Order {
     return split;
   }
 
-  #totalPrice(totalOrder) {
-    let totalprice = 0;
-    for (let i = 0; i < totalOrder.length; i++) {
-      const eachOrder = totalOrder[i];
-      const orderPrice = this.#orderPrice(eachOrder[0], eachOrder[1]);
-      totalprice += orderPrice;
-    }
-
-    const formatPrice = this.#formatCurrency(totalprice);
-    MissionUtils.Console.print(`${formatPrice}원`);
-  }
-
-  #orderPrice(name, counts) {
-    let orderprice = 0;
-    for (const category in menu) {
-      const eachPrice = this.#eachPrice(menu[category], name, counts)
-      orderprice += eachPrice;
-    }
-    return orderprice;
-  }
-
-  #eachPrice(category, name, counts) {
-    for (const eachMenu in category) {
-      if (eachMenu === name) {
-        const price = category[eachMenu];
-        return Number(price * counts);
-      }
-    }
-    return 0;
-  }
-
   #formatCurrency(number) {
     return new Intl.NumberFormat("ko-KR", {
       style: "currency",
       currency: "KRW",
     minimumFractionDigits: 0, 
     }).format(number).replace(/₩/g, '');
+  }
+
+  #totalPricePrint() {
+    const formatPrice = this.#formatCurrency(model.totalprice);
+    MissionUtils.Console.print(`${formatPrice}원`);
   }
 }
