@@ -114,7 +114,3 @@ export class Event {
     return false;
   }
 }
-
-class GiftEvent {
-
-}

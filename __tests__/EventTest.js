@@ -1,5 +1,5 @@
 import { Order } from "../src/Order.js";
-import { Event } from "../src/Event";
+import { Event } from "../src/Event.js";
 import { MissionUtils } from "@woowacourse/mission-utils";
 
 // 주문 객체 생성 -> 모델 객체에 주문 내역 저장
@@ -14,12 +14,12 @@ const getLogSpy = () => {
 
 
 describe("이벤트 클래스 테스트", () => {
+  const logSpy = getLogSpy();
+
+  const input = "3";
+  new Event(input);
+
   test("할인 이벤트 혜택 내역을 출력한다.", () => {
-    const logSpy = getLogSpy();
-
-    const input = "3";
-    new Event(input);
-
     const logs = [
       "크리스마스 디데이 할인: -1,200원",
       "평일 할인: -4,046원",
@@ -32,11 +32,6 @@ describe("이벤트 클래스 테스트", () => {
   });
 
   test("증정 이벤트 혜택 내역을 같이 출력한다.", () => {
-    const logSpy = getLogSpy();
-
-    const input = "3";
-    new Event(input);
-
     const logs = [
       "크리스마스 디데이 할인: -1,200원",
       "평일 할인: -4,046원",
