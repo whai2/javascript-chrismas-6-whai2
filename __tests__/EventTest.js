@@ -14,10 +14,13 @@ const getLogSpy = () => {
 
 
 describe("이벤트 클래스 테스트", () => {
-  const logSpy = getLogSpy();
-
+  // 주문 객체 생성 -> 모델 객체에 주문 내역 저장
+  const menuInput = "티본스테이크-1,바비큐립-1,초코케이크-2,제로콜라-1";
   const input = "3";
+  new Order(menuInput);
   new Event(input);
+
+  const logSpy = getLogSpy();
 
   test("할인 이벤트 혜택 내역을 출력한다.", () => {
     const logs = [
@@ -43,9 +46,7 @@ describe("이벤트 클래스 테스트", () => {
       expect(logSpy).toHaveBeenCalledWith(expect.stringContaining(log));
     });
   });
-});
 
-describe("이벤트 날짜 예외 테스트", () => {
   test.each([
     ["숫자"],
     ["4.5"],
@@ -59,5 +60,14 @@ describe("이벤트 날짜 예외 테스트", () => {
     expect(()=> {
       new Event(inputs)
     }).toThrow(errorMessage);
+  });
+
+  test("총주문 금액 10000원 미만 시, 이벤트 미적용", () => {
+    // 주문 객체 생성 -> 모델 객체에 주문 내역 저장
+    const menuInput = "아이스크림-1,제로콜라-1";
+    const input = "3";
+    new Order(menuInput);
+  
+    expect(new Event(input)).toBeNull();
   });
 });
