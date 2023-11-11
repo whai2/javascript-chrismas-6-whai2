@@ -13,6 +13,7 @@ export class Event {
       return true;
     }
     MissionUtils.Console.print("없음");
+    return false;
   }
 
   #initialize() {
@@ -31,6 +32,9 @@ export class Event {
   }
 
   #discounttotalPrint() {
+    this.#giftEventListPrint();
+    MissionUtils.Console.print("\n<혜택 내역>");
+
     let eventList = ["크리스마스 디데이 할인", "평일 할인", "주말 할인", "특별 할인"];
     for (let i = 0; i < eventList.length; i++) {
     this.#discountPrint(eventList[i], model.eventDiscountList[i])
@@ -38,9 +42,15 @@ export class Event {
     this.#giftEventPrint();
   }
 
-  #giftEventPrint() {
+  #giftEventListPrint() {
     if (model.totalprice >= 120000) {
       model.giftprice = 25000;
+      MissionUtils.Console.print(`\n<증정 메뉴>\n샴페인 1개`);
+    }
+  }
+
+  #giftEventPrint() {
+    if (model.totalprice >= 120000) {
       MissionUtils.Console.print("증정 이벤트: -25,000원");
     }
   }

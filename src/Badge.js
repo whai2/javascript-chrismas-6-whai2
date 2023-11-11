@@ -9,22 +9,21 @@ export class Badge {
 
   #badgePrint() {
     let totalEventPrice = model.discountprice + model.giftprice;
-    this. #eachBadgePrint(totalEventPrice);
+    this.#eachBadgePrint(totalEventPrice);
   }
 
   #eachBadgePrint(totalEventPrice) {
     let badgeList = ["별", "트리", "산타"];
-    if (5000 <= totalEventPrice < 10000) {
+    if (5000 <= totalEventPrice && totalEventPrice < 10000) {
+      console.log(totalEventPrice)
       model.badge = badgeList[0]
-      MissionUtils.Console.print(`${badgeList[0]}`);
     }
-    if (10000 <= totalEventPrice < 20000) {
+    if (10000 <= totalEventPrice && totalEventPrice < 20000) {
+      console.log(totalEventPrice)
       model.badge = badgeList[1]
-      MissionUtils.Console.print(`${badgeList[1]}`);
     }
     if (20000 < totalEventPrice) {
       model.badge = badgeList[2]
-      MissionUtils.Console.print(`${badgeList[2]}`);
     }
   }
 }

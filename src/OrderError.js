@@ -2,7 +2,6 @@ import { menu } from "./Menu.js";
 import { model } from "./Model.js";
 
 export class OrderError {
-
   constructor(orders) {
     this.#formatValidate(orders);
     this.orders = orders;

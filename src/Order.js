@@ -49,6 +49,6 @@ export class Order {
 
   #totalPricePrint() {
     const formatPrice = this.#formatCurrency(model.totalprice);
-    MissionUtils.Console.print(`${formatPrice}원`);
+    MissionUtils.Console.print(`\n<할인 전 총주문 금액>\n${formatPrice}원`);
   }
 }

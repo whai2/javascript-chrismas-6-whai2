@@ -1,6 +1,7 @@
 import { Order } from "../src/Order.js";
 import { Event } from "../src/Event.js";
 import { Badge } from "../src/Badge.js";
+import OutputView from "../src/OutputView.js";
 import { MissionUtils } from "@woowacourse/mission-utils";
 
 const getLogSpy = () => {
@@ -21,6 +22,7 @@ describe("배지 클래스 테스트", () => {
     new Order(inputMenu);
     new Event(inputDate);
     new Badge();
+    OutputView.printBedge();
 
     expect(logSpy).toHaveBeenCalledWith(expect.stringContaining(log));
   });
