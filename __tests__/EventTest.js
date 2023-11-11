@@ -17,10 +17,11 @@ describe("이벤트 클래스 테스트", () => {
   // 주문 객체 생성 -> 모델 객체에 주문 내역 저장
   const menuInput = "티본스테이크-1,바비큐립-1,초코케이크-2,제로콜라-1";
   const input = "3";
-  new Order(menuInput);
-  new Event(input);
 
   const logSpy = getLogSpy();
+
+  new Order(menuInput);
+  new Event(input);
 
   test("할인 이벤트 혜택 내역을 출력한다.", () => {
     const logs = [
