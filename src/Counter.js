@@ -31,7 +31,7 @@ export class Counter {
   }
 
   #categoryCounter (category, counts) {
-    let categoryList = ["beverage", "main", "desesert", "appetizer"];
+    let categoryList = ["beverage", "main", "dessert", "appetizer"];
     for (let i = 0; i < categoryList.length; i++) {
       if (category === menu[categoryList[i]]) {
         model.totalcounts += counts;
