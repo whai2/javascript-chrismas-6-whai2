@@ -3,24 +3,27 @@ import { MissionUtils } from "@woowacourse/mission-utils";
 
 export class Badge {
   constructor() {
+    model.badge = null;
     this.#badgePrint();
   }
 
   #badgePrint() {
     let totalEventPrice = model.discountprice + model.giftprice;
-    console.log(totalEventPrice)
     this. #eachBadgePrint(totalEventPrice);
   }
 
   #eachBadgePrint(totalEventPrice) {
     let badgeList = ["별", "트리", "산타"];
     if (5000 <= totalEventPrice < 10000) {
+      model.badge = badgeList[0]
       MissionUtils.Console.print(`${badgeList[0]}`);
     }
     if (10000 <= totalEventPrice < 20000) {
+      model.badge = badgeList[1]
       MissionUtils.Console.print(`${badgeList[1]}`);
     }
     if (20000 < totalEventPrice) {
+      model.badge = badgeList[2]
       MissionUtils.Console.print(`${badgeList[2]}`);
     }
   }
