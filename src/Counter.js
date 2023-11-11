@@ -34,6 +34,7 @@ export class Counter {
     let categoryList = ["beverage", "main", "desesert", "appetizer"];
     for (let i = 0; i < categoryList.length; i++) {
       if (category === menu[categoryList[i]]) {
+        model.totalcounts += counts;
         model.menuCount[i] += counts;
       }
     }
