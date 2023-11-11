@@ -1,9 +1,10 @@
 import { model } from "./Model.js";
 import { MissionUtils } from "@woowacourse/mission-utils";
+import { EventError } from "./EventError.js";
 
 export class Event {
   constructor(date) {
-    // 초기화
+    new EventError(date);
     model.discountprice = 0;
     model.giftprice = 0;
     model.eventDiscountList = [0,0,0,0]; // 디데이, 평일, 주말, 특별

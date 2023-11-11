@@ -54,7 +54,7 @@ describe("이벤트 날짜 예외 테스트", () => {
     ["1E3"],
     ["32"],
   ])("이벤트 날짜를 잘못 입력한 경우, 에러가 발생한다.", (inputs) => {
-    errorMessage = "[ERROR] 유효하지 않은 날짜입니다. 다시 입력해 주세요.";
+    const errorMessage = "[ERROR] 유효하지 않은 날짜입니다. 다시 입력해 주세요.";
 
     expect(()=> {
       new Event(inputs)
