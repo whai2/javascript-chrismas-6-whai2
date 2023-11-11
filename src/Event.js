@@ -1,31 +1,46 @@
-export class DiscountEvent {
-  constructor(date, totalprice) {
+import { model } from "./Model.js";
+
+export class Event {
+  constructor(date) {
     this.date = Number(date);
-    this.totalprice = totalprice;
 
     if (this.date > 25) {
-      this.#afterChrismas(totalprice);
+      this.#afterChrismas(model.totalprice);
       return true;
     }
-    this.#beforeChrismas(totalprice);
+    this.#beforeChrismas(model.totalprice);
   }
 
   #beforeChrismas(totalprice) {
-    this.dDayDiscount();
-    this.weekdayDiscount();
-    this.weekendDiscount();
-    this.specialDiscount();
+    this.dDayDiscount(totalprice);
+    this.weekdayDiscount(totalprice);
+    this.weekendDiscount(totalprice);
+    this.specialDiscount(totalprice);
   }
 
   #afterChrismas(totalprice) {
-    this.weekdayDiscount();
-    this.weekendDiscount();
-    this.specialDiscount();
+    this.weekdayDiscount(totalprice);
+    this.weekendDiscount(totalprice);
+    this.specialDiscount(totalprice);
+  }
+
+  #dDayDiscount(totalprice) {
+
+  }
+
+  #weekdayDiscount(totalprice) {
+
+  }
+
+  #weekendDiscount(totalprice) {
+
+  }
+
+  #specialDiscount(totalprice) {
+
   }
 }
 
-export class GiftEvnet {
-  constructor(totalprice) {
+class GiftEvent {
 
-  }
 }
