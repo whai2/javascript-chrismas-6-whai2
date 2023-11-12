@@ -1,6 +1,5 @@
 import { Order } from "../src/Order.js";
 import { Event } from "../src/Event.js";
-import { Badge } from "../src/Badge.js";
 import OutputView from "../src/OutputView.js";
 import { MissionUtils } from "@woowacourse/mission-utils";
 
@@ -21,7 +20,6 @@ describe("배지 클래스 테스트", () => {
     // 주문 객체 생성 -> 모델 객체에 주문 내역 저장 -> 이벤트 내역 저장
     new Order(inputMenu);
     new Event(inputDate);
-    new Badge();
     OutputView.printBedge();
 
     expect(logSpy).toHaveBeenCalledWith(expect.stringContaining(log));

@@ -23,8 +23,16 @@ class App {
     OutputView.printEventComment(inputDate);
     OutputView.printMenu(inputMenu);
     OutputView.printEvent(inputDate);
+    OutputView.totalPricePrint();
+
+    new Event(inputDate);
+
+    OutputView.giftEventListPrint();
+    OutputView.discountPrint();
+    OutputView.giftEventPrint();
     OutputView.printTotalEventPrice();
     OutputView.printAfterDiscountPrice();
+    
     OutputView.printBedge();
   }
 }

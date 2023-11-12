@@ -9,7 +9,6 @@ export class Event {
       this.#initialize();
       this.#eventPlaner(date);
 
-      this.#discounttotalPrint();
       return true;
     }
     MissionUtils.Console.print("없음");
@@ -29,45 +28,10 @@ export class Event {
       return true;
     }
     this.#beforeChrismas();
-  }
 
-  #discounttotalPrint() {
-    this.#giftEventListPrint();
-    MissionUtils.Console.print("\n<혜택 내역>");
-
-    let eventList = ["크리스마스 디데이 할인", "평일 할인", "주말 할인", "특별 할인"];
-    for (let i = 0; i < eventList.length; i++) {
-    this.#discountPrint(eventList[i], model.eventDiscountList[i])
-    }
-    this.#giftEventPrint();
-  }
-
-  #giftEventListPrint() {
     if (model.totalprice >= 120000) {
       model.giftprice = 25000;
-      MissionUtils.Console.print(`\n<증정 메뉴>\n샴페인 1개`);
     }
-  }
-
-  #giftEventPrint() {
-    if (model.totalprice >= 120000) {
-      MissionUtils.Console.print("증정 이벤트: -25,000원");
-    }
-  }
-
-  #discountPrint(event, discount) {
-    if (discount !== 0) {
-      const formatDiscount = this.#formatCurrency(discount);
-      MissionUtils.Console.print(`${event}: -${formatDiscount}원`);
-    }
-  }
-
-  #formatCurrency(number) {
-    return new Intl.NumberFormat("ko-KR", {
-      style: "currency",
-      currency: "KRW",
-    minimumFractionDigits: 0, 
-    }).format(number).replace(/₩/g, '');
   }
 
   #beforeChrismas() {
