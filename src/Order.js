@@ -1,4 +1,3 @@
-import { MissionUtils } from "@woowacourse/mission-utils";
 import { Counter } from "./Counter.js";
 import { model } from "./Model.js";
 
@@ -23,18 +22,5 @@ export class Order {
   #splitAsDash(order) {
     const split = order.split('-');
     return split;
-  }
-
-  #formatCurrency(number) {
-    return new Intl.NumberFormat("ko-KR", {
-      style: "currency",
-      currency: "KRW",
-    minimumFractionDigits: 0, 
-    }).format(number).replace(/₩/g, '');
-  }
-
-  #totalPricePrint() {
-    const formatPrice = this.#formatCurrency(model.totalprice);
-    MissionUtils.Console.print(`\n<할인 전 총주문 금액>\n${formatPrice}원`);
   }
 }
