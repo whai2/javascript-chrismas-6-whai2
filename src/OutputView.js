@@ -25,14 +25,12 @@ const OutputView = {
     Console.print(`\n<할인 전 총주문 금액>\n${formatPrice}원`);
   },
 
-  printEvent(date) {
-    new Event(date);
-  },
-
   giftEventListPrint() {
     if (model.totalprice >= 120000) {
       Console.print(`\n<증정 메뉴>\n샴페인 1개`);
+      return true;
     }
+    Console.print(`\n<증정 메뉴>\n없음`);
   },
 
   discountPrint() {
@@ -42,7 +40,7 @@ const OutputView = {
       if (model.eventDiscountList[i] !== 0) {
         const formatDiscount = formatCurrency(model.eventDiscountList[i]);
         Console.print(`${eventList[i]}: -${formatDiscount}원`);
-      }  
+      } 
     }
   },
 

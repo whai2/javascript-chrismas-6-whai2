@@ -2,7 +2,7 @@ import { model } from "./Model.js";
 
 export class Badge {
   constructor() {
-    model.badge = null;
+    model.badge = "없음";
     this.#badgePrint();
   }
 

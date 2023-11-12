@@ -1,5 +1,6 @@
 import InputView from "./InputView.js";
 import OutputView from "./OutputView.js";
+import { model } from "./Model.js";
 import { Console } from "@woowacourse/mission-utils";
 
 class App {
@@ -22,18 +23,28 @@ class App {
   output(inputDate, inputMenu) {
     OutputView.printEventComment(inputDate);
     OutputView.printMenu(inputMenu);
-    OutputView.printEvent(inputDate);
     OutputView.totalPricePrint();
 
     new Event(inputDate);
+    this.#eventOutput();
 
+    OutputView.printBedge();
+  }
+
+  #eventOutput() {
     OutputView.giftEventListPrint();
     OutputView.discountPrint();
-    OutputView.giftEventPrint();
+    this.#eventListOutput();
     OutputView.printTotalEventPrice();
     OutputView.printAfterDiscountPrice();
-    
-    OutputView.printBedge();
+  }
+
+  #eventListOutput() {
+    if (model.discountprice === 0) {
+      Console.print("\n<혜택 내역>\n없음");
+      return true;
+    }
+    OutputView.giftEventPrint();
   }
 }
 

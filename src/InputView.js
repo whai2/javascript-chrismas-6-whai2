@@ -16,8 +16,7 @@ const InputView = {
         
     const error = new OrderError(inputMenu);
     new Order(inputMenu);
-
-    error.menusValidate(model.totalOrder); // 이러면 토탈 오더가 없음.
+    error.menusValidate(model.totalOrder);
     error.onlyBeverageValidate();
     error.totalCountOverValidate();
 
