@@ -1,7 +1,7 @@
 import { Console } from "@woowacourse/mission-utils";
 import { EventError } from "./EventError.js";
 import { OrderError } from "./OrderError.js";
-import { Order } from "./Order.js";
+import { Order } from "./domain/Order.js";
 import { model } from "./database/Model.js";
 
 const InputView = {

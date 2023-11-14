@@ -1,5 +1,5 @@
 import { Console } from "@woowacourse/mission-utils";
-import { Badge } from "./Badge.js";
+import { Badge } from "./domain/Badge.js";
 import { model } from "./database/Model.js";
 
 const OutputView = {

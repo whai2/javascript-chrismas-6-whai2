@@ -1,6 +1,6 @@
 import App from "../src/App.js";
-import { Order } from "../src/Order.js";
-import { Event } from "../src/Event.js";
+import { Order } from "../src/domain/Order.js";
+import { Event } from "../src/domain/Event.js";
 import OutputView from "../src/OutputView.js";
 import { MissionUtils } from "@woowacourse/mission-utils";
 import { EventError } from "../src/EventError.js";
@@ -53,20 +53,17 @@ describe("이벤트 클래스 테스트", () => {
     expect(logSpy).toHaveBeenCalledWith(expect.stringContaining(log));
   });
 
-  test.each([
-    ["숫자"],
-    ["4.5"],
-    ["-5"],
-    ["0b101"],
-    ["1E3"],
-    ["32"],
-  ])("이벤트 날짜를 잘못 입력한 경우, 에러가 발생한다.", (inputs) => {
-    const errorMessage = "[ERROR] 유효하지 않은 날짜입니다. 다시 입력해 주세요.";
+  test.each([["숫자"], ["4.5"], ["-5"], ["0b101"], ["1E3"], ["32"]])(
+    "이벤트 날짜를 잘못 입력한 경우, 에러가 발생한다.",
+    (inputs) => {
+      const errorMessage =
+        "[ERROR] 유효하지 않은 날짜입니다. 다시 입력해 주세요.";
 
-    expect(()=> {
-      new EventError(inputs)
-    }).toThrow(errorMessage);
-  });
+      expect(() => {
+        new EventError(inputs);
+      }).toThrow(errorMessage);
+    }
+  );
 
   test("총주문 금액 10000원 미만 시, 이벤트 미적용", async () => {
     const logSpy = getLogSpy();
@@ -74,7 +71,7 @@ describe("이벤트 클래스 테스트", () => {
 
     const app = new App();
     await app.run();
-    
+
     const log = "없음";
 
     expect(logSpy).toHaveBeenCalledWith(expect.stringContaining(log));

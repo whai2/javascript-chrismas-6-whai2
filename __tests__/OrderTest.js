@@ -1,4 +1,4 @@
-import { Order } from "../src/Order.js";
+import { Order } from "../src/domain/Order.js";
 import { model } from "../src/database/Model.js";
 import { OrderError } from "../src/OrderError.js";
 import { MissionUtils } from "@woowacourse/mission-utils";
@@ -46,64 +46,67 @@ describe("주문 예외 테스트", () => {
   test.each([
     [
       "해산물파스타:2,티본스테이크:1,제로콜라:1",
-      "[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요."
+      "[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.",
     ],
     [
       "해산물파스타-2/티본스테이크-1/제로콜라-1",
-      "[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요."
+      "[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.",
     ],
     [
       "해산물파스타-2, 티본스테이크-1, 제로콜라-1",
-      "[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요."
+      "[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.",
     ],
     [
       "해산물파스타--5,티본스테이크-1,제로콜라-1",
-      "[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요."
+      "[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.",
     ],
     [
       "해산물파스타-0b101,티본스테이크-1,제로콜라-1",
-      "[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요."
+      "[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.",
     ],
     [
       "해산물파스타-1E3,티본스테이크-1,제로콜라-1",
-      "[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요."
+      "[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.",
     ],
-  ])("주문 입력 형태가 잘못될 경우, 에러가 발생한다.", (inputs, errorMessage) => {
-
-    expect(() => {
-      new OrderError(inputs)
-    }).toThrow(errorMessage);
-  });
+  ])(
+    "주문 입력 형태가 잘못될 경우, 에러가 발생한다.",
+    (inputs, errorMessage) => {
+      expect(() => {
+        new OrderError(inputs);
+      }).toThrow(errorMessage);
+    }
+  );
 
   test.each([
     [
       "해산물파스타-0,티본스테이크-1,제로콜라-1",
-      "[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요."
+      "[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.",
     ],
     [
       "시저샐러드-1,시저샐러드-1",
-      "[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요."
+      "[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.",
     ],
-    [
-      "토마토파스타-5",
-      "[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요."
-    ],
-  ])("0개 주문이 있을 경우, 메뉴가 중복될 경우, 없는 메뉴를 주문할 경우, 에러가 발생한다.", (input, errorMessage) => {
-    new Order(input)
-    const error = new OrderError(input);
+    ["토마토파스타-5", "[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요."],
+  ])(
+    "0개 주문이 있을 경우, 메뉴가 중복될 경우, 없는 메뉴를 주문할 경우, 에러가 발생한다.",
+    (input, errorMessage) => {
+      new Order(input);
+      const error = new OrderError(input);
 
-    expect(() => {
-      error.menusValidate(model.totalOrder)
-    }).toThrow(errorMessage);
-  });
+      expect(() => {
+        error.menusValidate(model.totalOrder);
+      }).toThrow(errorMessage);
+    }
+  );
 
   test("음료만 주문할 경우, 에러가 발생한다.", () => {
     const input = "제로콜라-1";
-    const errorMessage = "[ERROR] 음료만 주문 시, 주문할 수 없습니다. 다시 입력해 주세요.";
+    const errorMessage =
+      "[ERROR] 음료만 주문 시, 주문할 수 없습니다. 다시 입력해 주세요.";
 
-    new Order(input)
+    new Order(input);
     const error = new OrderError(input);
-    error.menusValidate(model.totalOrder)
+    error.menusValidate(model.totalOrder);
 
     expect(() => {
       error.onlyBeverageValidate();
@@ -112,11 +115,12 @@ describe("주문 예외 테스트", () => {
 
   test("0개 주문이 있을 경우, 메뉴가 중복될 경우, 에러가 발생한다.", () => {
     const input = "시저샐러드-18,제로콜라-3";
-    const errorMessage = "[ERROR] 메뉴는 한 번에 최대 20개까지만 주문할 수 있습니다.";
+    const errorMessage =
+      "[ERROR] 메뉴는 한 번에 최대 20개까지만 주문할 수 있습니다.";
 
-    new Order(input)
+    new Order(input);
     const error = new OrderError(input);
-    error.menusValidate(model.totalOrder)
+    error.menusValidate(model.totalOrder);
 
     expect(() => {
       error.totalCountOverValidate();

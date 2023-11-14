@@ -1,5 +1,5 @@
-import { Order } from "../src/Order.js";
-import { Event } from "../src/Event.js";
+import { Order } from "../src/domain/Order.js";
+import { Event } from "../src/domain/Event.js";
 import OutputView from "../src/OutputView.js";
 import { MissionUtils } from "@woowacourse/mission-utils";
 

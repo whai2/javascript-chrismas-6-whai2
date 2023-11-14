@@ -1,4 +1,4 @@
-import { model } from "./database/Model.js";
+import { model } from "../database/Model.js";
 
 export class Badge {
   constructor() {
