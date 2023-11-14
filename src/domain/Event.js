@@ -4,7 +4,8 @@ export class Event {
   constructor(date) {
     this.#initialize();
     if (model.totalprice >= 10000) {
-      this.#eventPlaner(date);
+      this.#eventPlanner(date);
+      this.#giftPlanner();
       return true;
     }
     return false;
@@ -16,14 +17,16 @@ export class Event {
     model.eventDiscountList = [0, 0, 0, 0]; // 디데이, 평일, 주말, 특별
   }
 
-  #eventPlaner(date) {
+  #eventPlanner(date) {
     this.date = Number(date);
     if (this.date > 25) {
       this.#afterChrismas();
       return true;
     }
     this.#beforeChrismas();
+  }
 
+  #giftPlanner() {
     if (model.totalprice >= 120000) {
       model.giftprice = 25000;
     }
