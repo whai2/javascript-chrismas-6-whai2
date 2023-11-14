@@ -3,7 +3,7 @@ import { Order } from "../src/domain/Order.js";
 import { Event } from "../src/domain/Event.js";
 import OutputView from "../src/OutputView.js";
 import { MissionUtils } from "@woowacourse/mission-utils";
-import { EventError } from "../src/EventError.js";
+import { EventError } from "../src/error/EventError.js";
 
 const mockQuestions = (inputs) => {
   MissionUtils.Console.readLineAsync = jest.fn();

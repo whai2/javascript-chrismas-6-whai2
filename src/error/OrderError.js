@@ -1,5 +1,5 @@
-import { menu } from "./database/Menu.js";
-import { model } from "./database/Model.js";
+import { menu } from "../database/Menu.js";
+import { model } from "../database/Model.js";
 
 export class OrderError {
   constructor(orders) {

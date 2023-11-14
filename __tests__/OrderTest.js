@@ -1,6 +1,6 @@
 import { Order } from "../src/domain/Order.js";
 import { model } from "../src/database/Model.js";
-import { OrderError } from "../src/OrderError.js";
+import { OrderError } from "../src/error/OrderError.js";
 import { MissionUtils } from "@woowacourse/mission-utils";
 import OutputView from "../src/OutputView.js";
 

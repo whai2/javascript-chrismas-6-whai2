@@ -1,6 +1,6 @@
 import { Console } from "@woowacourse/mission-utils";
-import { EventError } from "./EventError.js";
-import { OrderError } from "./OrderError.js";
+import { EventError } from "./error/EventError.js";
+import { OrderError } from "./error/OrderError.js";
 import { Order } from "./domain/Order.js";
 import { model } from "./database/Model.js";
 
