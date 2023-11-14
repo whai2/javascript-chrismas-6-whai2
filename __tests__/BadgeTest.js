@@ -20,7 +20,7 @@ describe("배지 클래스 테스트", () => {
     // 주문 객체 생성 -> 모델 객체에 주문 내역 저장 -> 이벤트 내역 저장
     new Order(inputMenu);
     new Event(inputDate);
-    OutputView.printBedge();
+    OutputView.printBadge();
 
     expect(logSpy).toHaveBeenCalledWith(expect.stringContaining(log));
   });

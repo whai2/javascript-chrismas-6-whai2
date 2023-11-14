@@ -29,7 +29,7 @@ class App {
     new Event(inputDate);
     this.#eventOutput();
 
-    OutputView.printBedge();
+    OutputView.printBadge();
   }
 
   #eventOutput() {
