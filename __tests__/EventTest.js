@@ -75,6 +75,5 @@ describe("이벤트 클래스 테스트", () => {
     const log = "없음";
 
     expect(logSpy).toHaveBeenCalledWith(expect.stringContaining(log));
-    //expectLogContains(getOutput(logSpy), log);
   });
 });
