@@ -1,5 +1,5 @@
-import { model } from "./Model.js";
-import { menu } from "./Menu.js";
+import { model } from "../database/Model.js";
+import { menu } from "../database/Menu.js";
 
 export class Counter {
   totalMenuCounter(orders) {

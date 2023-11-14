@@ -9,6 +9,7 @@ class App {
     try {
       OutputView.printStartComment();
       await this.input();
+      process.exitCode = 0;
     } catch (e) {
       Console.print(e.message);
     }

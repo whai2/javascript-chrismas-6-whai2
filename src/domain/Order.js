@@ -1,4 +1,4 @@
-import { Counter } from "../database/Counter.js";
+import { Counter } from "./Counter.js";
 import { model } from "../database/Model.js";
 
 export class Order {
