@@ -1,7 +1,7 @@
 import App from "../src/App.js";
 import { Order } from "../src/domain/Order.js";
 import { Event } from "../src/domain/Event.js";
-import OutputView from "../src/OutputView.js";
+import OutputView from "../src/view/OutputView.js";
 import { MissionUtils } from "@woowacourse/mission-utils";
 import { EventError } from "../src/error/EventError.js";
 

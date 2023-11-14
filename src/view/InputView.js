@@ -1,8 +1,8 @@
 import { Console } from "@woowacourse/mission-utils";
-import { EventError } from "./error/EventError.js";
-import { OrderError } from "./error/OrderError.js";
-import { Order } from "./domain/Order.js";
-import { model } from "./database/Model.js";
+import { EventError } from "../error/EventError.js";
+import { OrderError } from "../error/OrderError.js";
+import { Order } from "../domain/Order.js";
+import { model } from "../database/Model.js";
 
 const InputView = {
   async readDate() {

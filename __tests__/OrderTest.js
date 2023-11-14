@@ -2,7 +2,7 @@ import { Order } from "../src/domain/Order.js";
 import { model } from "../src/database/Model.js";
 import { OrderError } from "../src/error/OrderError.js";
 import { MissionUtils } from "@woowacourse/mission-utils";
-import OutputView from "../src/OutputView.js";
+import OutputView from "../src/view/OutputView.js";
 
 const getLogSpy = () => {
   const logSpy = jest.spyOn(MissionUtils.Console, "print");
