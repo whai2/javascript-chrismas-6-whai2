@@ -1,21 +1,21 @@
-import { model } from "./Model.js";
-import { menu } from "./Menu.js";
+import { model } from "./database/Model.js";
+import { menu } from "./database/Menu.js";
 
 export class Counter {
-  totalMenuCounter (orders) {
+  totalMenuCounter(orders) {
     // 초기화
     model.totalprice = 0;
-    model.menuCount = [0,0,0,0];
+    model.menuCount = [0, 0, 0, 0];
 
     for (let i = 0; i < orders.length; i++) {
       const eachOrder = orders[i];
-      this.#menuCounter(eachOrder[0], Number(eachOrder[1]))
+      this.#menuCounter(eachOrder[0], Number(eachOrder[1]));
     }
   }
 
   #menuCounter(name, counts) {
     for (const category in menu) {
-      this.#eachMenuCounter(menu[category], name, counts)
+      this.#eachMenuCounter(menu[category], name, counts);
     }
   }
 
@@ -30,7 +30,7 @@ export class Counter {
     }
   }
 
-  #categoryCounter (category, counts) {
+  #categoryCounter(category, counts) {
     let categoryList = ["beverage", "main", "dessert", "appetizer"];
     for (let i = 0; i < categoryList.length; i++) {
       if (category === menu[categoryList[i]]) {

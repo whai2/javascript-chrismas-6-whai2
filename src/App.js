@@ -1,6 +1,6 @@
 import InputView from "./InputView.js";
 import OutputView from "./OutputView.js";
-import { model } from "./Model.js";
+import { model } from "./database/Model.js";
 import { Event } from "./Event.js";
 import { Console } from "@woowacourse/mission-utils";
 

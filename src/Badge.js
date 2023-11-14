@@ -1,4 +1,4 @@
-import { model } from "./Model.js";
+import { model } from "./database/Model.js";
 
 export class Badge {
   constructor() {
@@ -14,13 +14,13 @@ export class Badge {
   #eachBadgePrint(totalEventPrice) {
     const badgeList = ["별", "트리", "산타"];
     if (5000 <= totalEventPrice && totalEventPrice < 10000) {
-      model.badge = badgeList[0]
+      model.badge = badgeList[0];
     }
     if (10000 <= totalEventPrice && totalEventPrice < 20000) {
-      model.badge = badgeList[1]
+      model.badge = badgeList[1];
     }
     if (20000 <= totalEventPrice) {
-      model.badge = badgeList[2]
+      model.badge = badgeList[2];
     }
   }
 }

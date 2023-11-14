@@ -1,5 +1,5 @@
 import { Counter } from "./Counter.js";
-import { model } from "./Model.js";
+import { model } from "./database/Model.js";
 
 export class Order {
   constructor(orders) {
@@ -9,7 +9,7 @@ export class Order {
   }
 
   #splitAsCommas(orders) {
-    const split = orders.split(',');
+    const split = orders.split(",");
     model.totalOrder = [];
     for (let i = 0; i < split.length; i++) {
       const order = this.#splitAsDash(split[i]);
@@ -20,7 +20,7 @@ export class Order {
   }
 
   #splitAsDash(order) {
-    const split = order.split('-');
+    const split = order.split("-");
     return split;
   }
 }

@@ -1,11 +1,10 @@
-import { model } from "./Model.js";
+import { model } from "./database/Model.js";
 
 export class Event {
   constructor(date) {
+    this.#initialize();
     if (model.totalprice >= 10000) {
-      this.#initialize();
       this.#eventPlaner(date);
-
       return true;
     }
     return false;
@@ -14,7 +13,7 @@ export class Event {
   #initialize() {
     model.discountprice = 0;
     model.giftprice = 0;
-    model.eventDiscountList = [0,0,0,0]; // 디데이, 평일, 주말, 특별
+    model.eventDiscountList = [0, 0, 0, 0]; // 디데이, 평일, 주말, 특별
   }
 
   #eventPlaner(date) {
@@ -43,7 +42,7 @@ export class Event {
 
   #dDayDiscount() {
     let discounts = 1000;
-    discounts += (this.date-1) * 100;
+    discounts += (this.date - 1) * 100;
 
     model.discountprice += discounts;
     model.eventDiscountList[0] += discounts;
@@ -59,7 +58,8 @@ export class Event {
   }
 
   #weekdayDiscount() {
-    if (model.menuCount[2] !== 0) { // 디저트 주문이 있다면
+    if (model.menuCount[2] !== 0) {
+      // 디저트 주문이 있다면
       let counts = model.menuCount[2];
       model.discountprice += 2023 * counts;
       model.eventDiscountList[1] += 2023 * counts;
@@ -67,7 +67,8 @@ export class Event {
   }
 
   #weekendDiscount() {
-    if (model.menuCount[1] !== 0) { // 메인 주문이 있다면
+    if (model.menuCount[1] !== 0) {
+      // 메인 주문이 있다면
       let counts = model.menuCount[1];
       model.discountprice += 2023 * counts;
       model.eventDiscountList[2] += 2023 * counts;
@@ -83,14 +84,14 @@ export class Event {
   }
 
   #weekendCalculator(date) {
-    if ((date-1) % 7 === 0 || (date-2) % 7 === 0) {
+    if ((date - 1) % 7 === 0 || (date - 2) % 7 === 0) {
       return true;
     }
     return false;
   }
 
   #specialCalculator(date) {
-    if ((date-3) % 7 === 0 || date === 25) {
+    if ((date - 3) % 7 === 0 || date === 25) {
       return true;
     }
     return false;

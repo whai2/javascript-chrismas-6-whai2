@@ -1,6 +1,6 @@
 import { Console } from "@woowacourse/mission-utils";
 import { Badge } from "./Badge.js";
-import { model } from "./Model.js";
+import { model } from "./database/Model.js";
 
 const OutputView = {
   printStartComment() {
@@ -8,13 +8,15 @@ const OutputView = {
   },
 
   printEventComment(date) {
-    Console.print(`12월 ${date}일에 우테코 식당에서 받을 이벤트 혜택 미리 보기!`);
+    Console.print(
+      `12월 ${date}일에 우테코 식당에서 받을 이벤트 혜택 미리 보기!`
+    );
   },
 
   printMenu() {
     Console.print("\n<주문 메뉴>");
     for (let i = 0; i < model.totalOrder.length; i++) {
-      const eachCount = model.totalOrder[i]
+      const eachCount = model.totalOrder[i];
       Console.print(`${eachCount[0]} ${eachCount[1]}개`);
     }
   },
@@ -34,7 +36,12 @@ const OutputView = {
 
   discountPrint() {
     Console.print("\n<혜택 내역>");
-    let eventList = ["크리스마스 디데이 할인", "평일 할인", "주말 할인", "특별 할인"];
+    let eventList = [
+      "크리스마스 디데이 할인",
+      "평일 할인",
+      "주말 할인",
+      "특별 할인",
+    ];
     for (let i = 0; i < eventList.length; i++) {
       if (model.eventDiscountList[i] !== 0) {
         const formatDiscount = formatCurrency(model.eventDiscountList[i]);
@@ -65,14 +72,16 @@ const OutputView = {
     new Badge();
     Console.print(`\n<12월 이벤트 배지>\n${model.badge}`);
   },
-}
+};
 
 export default OutputView;
 
 function formatCurrency(number) {
-    return new Intl.NumberFormat("ko-KR", {
-      style: "currency",
-      currency: "KRW",
-    minimumFractionDigits: 0, 
-    }).format(number).replace(/₩/g, '');
+  return new Intl.NumberFormat("ko-KR", {
+    style: "currency",
+    currency: "KRW",
+    minimumFractionDigits: 0,
+  })
+    .format(number)
+    .replace(/₩/g, "");
 }

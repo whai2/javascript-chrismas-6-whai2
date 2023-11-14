@@ -1,7 +1,19 @@
+import App from "../src/App.js";
 import { Order } from "../src/Order.js";
 import { Event } from "../src/Event.js";
 import OutputView from "../src/OutputView.js";
 import { MissionUtils } from "@woowacourse/mission-utils";
+import { EventError } from "../src/EventError.js";
+
+const mockQuestions = (inputs) => {
+  MissionUtils.Console.readLineAsync = jest.fn();
+
+  MissionUtils.Console.readLineAsync.mockImplementation(() => {
+    const input = inputs.shift();
+
+    return Promise.resolve(input);
+  });
+};
 
 const getLogSpy = () => {
   const logSpy = jest.spyOn(MissionUtils.Console, "print");
@@ -52,22 +64,20 @@ describe("이벤트 클래스 테스트", () => {
     const errorMessage = "[ERROR] 유효하지 않은 날짜입니다. 다시 입력해 주세요.";
 
     expect(()=> {
-      new Event(inputs)
+      new EventError(inputs)
     }).toThrow(errorMessage);
   });
 
-  test("총주문 금액 10000원 미만 시, 이벤트 미적용", () => {
-    // 주문 객체 생성 -> 모델 객체에 주문 내역 저장
-    const menuInput = "아이스크림-1,제로콜라-1";
-    const input = "3";
-
+  test("총주문 금액 10000원 미만 시, 이벤트 미적용", async () => {
     const logSpy = getLogSpy();
+    mockQuestions(["3", "아이스크림-1,제로콜라-1"]);
 
-    new Order(menuInput);
-    new Event(input);
+    const app = new App();
+    await app.run();
     
     const log = "없음";
 
     expect(logSpy).toHaveBeenCalledWith(expect.stringContaining(log));
+    //expectLogContains(getOutput(logSpy), log);
   });
 });

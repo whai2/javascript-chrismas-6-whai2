@@ -1,5 +1,5 @@
 import { Order } from "../src/Order.js";
-import { model } from "../src/Model.js";
+import { model } from "../src/database/Model.js";
 import { OrderError } from "../src/OrderError.js";
 import { MissionUtils } from "@woowacourse/mission-utils";
 import OutputView from "../src/OutputView.js";
