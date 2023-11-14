@@ -1,5 +1,4 @@
 import { Console } from "@woowacourse/mission-utils";
-import { Event } from "./Event.js";
 import { Badge } from "./Badge.js";
 import { model } from "./Model.js";
 
@@ -40,7 +39,7 @@ const OutputView = {
       if (model.eventDiscountList[i] !== 0) {
         const formatDiscount = formatCurrency(model.eventDiscountList[i]);
         Console.print(`${eventList[i]}: -${formatDiscount}원`);
-      } 
+      }
     }
   },
 

@@ -1,6 +1,7 @@
 import InputView from "./InputView.js";
 import OutputView from "./OutputView.js";
 import { model } from "./Model.js";
+import { Event } from "./Event.js";
 import { Console } from "@woowacourse/mission-utils";
 
 class App {
@@ -41,7 +42,7 @@ class App {
 
   #eventListOutput() {
     if (model.discountprice === 0) {
-      Console.print("\n<혜택 내역>\n없음");
+      Console.print("없음");
       return true;
     }
     OutputView.giftEventPrint();

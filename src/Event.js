@@ -1,17 +1,13 @@
 import { model } from "./Model.js";
-import { MissionUtils } from "@woowacourse/mission-utils";
-import { EventError } from "./EventError.js";
 
 export class Event {
   constructor(date) {
     if (model.totalprice >= 10000) {
-      new EventError(date);
       this.#initialize();
       this.#eventPlaner(date);
 
       return true;
     }
-    MissionUtils.Console.print("없음");
     return false;
   }
 
